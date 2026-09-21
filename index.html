@@ -3,214 +3,526 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cikuya Digital Store - Layanan VPN Premium</title>
+    <title>Cikuya Digital Store - VPN & Tunneling Service</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
-        body { background-color: #0f172a; color: #f8fafc; padding-bottom: 40px; }
-        header { background-color: #1e293b; padding: 16px; border-bottom: 1px solid #334155; text-align: center; }
-        header h1 { color: #38bdf8; font-size: 20px; }
-        .badge { background-color: #1e3a8a; color: #93c5fd; font-size: 11px; padding: 3px 8px; border-radius: 12px; margin-top: 4px; display: inline-block; }
-        .container { max-width: 800px; margin: 0 auto; padding: 20px 16px; }
-        .section-title { text-align: center; margin-bottom: 20px; }
-        .section-title h2 { font-size: 22px; color: #fff; }
-        .section-title p { color: #94a3b8; font-size: 13px; margin-top: 4px; }
-        
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 30px; }
-        .card { background-color: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
-        .card.popular { border: 2px solid #3b82f6; }
-        .popular-badge { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background-color: #3b82f6; color: #fff; font-size: 10px; font-weight: bold; padding: 2px 10px; border-radius: 10px; }
-        .card h3 { color: #38bdf8; font-size: 18px; margin-bottom: 8px; }
-        .price { font-size: 22px; font-weight: bold; margin-bottom: 12px; }
-        .price span { font-size: 12px; color: #94a3b8; font-weight: normal; }
-        .features { list-style: none; font-size: 13px; color: #cbd5e1; margin-bottom: 16px; }
-        .features li { margin-bottom: 6px; }
-        
-        .btn { width: 100%; padding: 10px; background-color: #3b82f6; color: #fff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-align: center; }
-        .btn-outline { background-color: #334155; color: #fff; }
-        .btn:hover { background-color: #2563eb; }
-        
-        .form-box { background-color: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; max-width: 500px; margin: 0 auto; }
-        .form-group { margin-bottom: 14px; }
-        .form-group label { display: block; font-size: 13px; color: #cbd5e1; margin-bottom: 6px; }
-        .form-control { width: 100%; padding: 10px; background-color: #0f172a; border: 1px solid #334155; border-radius: 8px; color: #fff; font-size: 14px; outline: none; }
-        .form-control:focus { border-color: #3b82f6; }
-        .checkbox-group { display: flex; align-items: center; gap: 8px; margin: 10px 0; font-size: 13px; color: #cbd5e1; }
-        
-        #loading { text-align: center; color: #38bdf8; font-size: 14px; margin-top: 10px; display: none; }
-        #resultBox { margin-top: 20px; background-color: #0f172a; padding: 12px; border-radius: 8px; border: 1px solid #334155; display: none; }
-        #resultBox h4 { color: #4ade80; font-size: 14px; margin-bottom: 8px; }
-        #resultContent { font-size: 11px; color: #cbd5e1; white-space: pre-wrap; word-break: break-all; font-family: monospace; }
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --card-border: #30363d;
+            --primary: #2f81f7;
+            --primary-hover: #1f6feb;
+            --success: #238636;
+            --warning: #d29922;
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding: 20px 12px 60px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        /* Header / Brand */
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Tab Navigation */
+        .tab-container {
+            display: flex;
+            background: #21262d;
+            padding: 4px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--card-border);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 10px 14px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 13px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(47, 129, 247, 0.3);
+        }
+
+        .tab-btn.trial.active {
+            background: var(--warning);
+            color: #000000;
+            box-shadow: 0 4px 12px rgba(210, 153, 34, 0.3);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* QRIS Section */
+        .qris-box {
+            text-align: center;
+            background: #0d1117;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px dashed var(--card-border);
+            margin-bottom: 16px;
+        }
+
+        .qris-box img {
+            max-width: 210px;
+            width: 100%;
+            border-radius: 8px;
+            background: #ffffff;
+            padding: 8px;
+            border: 1px solid #ffffff;
+        }
+
+        .qris-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            background: #0d1117;
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-warning {
+            background: var(--warning);
+            color: #000000;
+        }
+
+        .btn-wa {
+            background: #238636;
+            color: #ffffff;
+            margin-top: 10px;
+            font-size: 13px;
+            padding: 10px;
+        }
+
+        .btn-wa:hover {
+            background: #2ea043;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Output Box */
+        .result-box {
+            display: none;
+            background: #0d1117;
+            border: 1px solid var(--success);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+
+        .result-header {
+            color: #3fb950;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .result-content {
+            background: var(--card-bg);
+            padding: 12px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+            word-break: break-all;
+            color: #c9d1d9;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .btn-copy {
+            background: #21262d;
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        .badge-trial {
+            background: rgba(210, 153, 34, 0.15);
+            color: var(--warning);
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .hidden {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Cikuya Digital Store</h1>
-        <span class="badge">Online Service</span>
-    </header>
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <h1>CIKUYA DIGITAL STORE</h1>
+        <p>Layanan Premium VPN & Tunneling Service Auto Order</p>
+    </div>
 
-    <div class="container">
-        <div class="section-title">
-            <h2>Pilih Paket VPN</h2>
-            <p>Layanan tunnel SSH, VMess, VLess, Trojan, & CloudFront</p>
+    <!-- Navigasi Tab -->
+    <div class="tab-container">
+        <button class="tab-btn active" id="tab-paid-btn" onclick="switchTab('paid')">
+            <i class="fa-solid fa-cart-shopping"></i> Order Premium
+        </button>
+        <button class="tab-btn trial" id="tab-trial-btn" onclick="switchTab('trial')">
+            <i class="fa-solid fa-bolt"></i> Trial Gratis (15-20 Min)
+        </button>
+    </div>
+
+    <!-- TAB 1: ORDER PREMIUM -->
+    <div id="tab-paid" class="card">
+        <div class="card-title">
+            <i class="fa-solid fa-qrcode" style="color: var(--primary);"></i>
+            <span>Pembayaran via QRIS All Payment</span>
         </div>
-
-        <div class="grid">
-            <!-- Paket Mini -->
-            <div class="card">
-                <div>
-                    <h3>Paket Mini</h3>
-                    <div class="price">Rp 5.000 <span>/ 7 hari</span></div>
-                    <ul class="features">
-                        <li>✓ Masa Aktif 7 Hari</li>
-                        <li>✓ High Speed Server</li>
-                        <li>✓ Support All Protocol</li>
-                    </ul>
-                </div>
-                <button onclick="selectPackage('Mini')" class="btn btn-outline">Pilih Paket</button>
-            </div>
-
-            <!-- Paket Reguler -->
-            <div class="card popular">
-                <span class="popular-badge">POPULER</span>
-                <div>
-                    <h3>Paket Reguler</h3>
-                    <div class="price">Rp 15.000 <span>/ 30 hari</span></div>
-                    <ul class="features">
-                        <li>✓ Masa Aktif 30 Hari</li>
-                        <li>✓ High Speed Server</li>
-                        <li>✓ Unlimited Bandwidth</li>
-                    </ul>
-                </div>
-                <button onclick="selectPackage('Reguler')" class="btn">Pilih Paket</button>
-            </div>
-
-            <!-- Paket Premium -->
-            <div class="card">
-                <div>
-                    <h3>Paket Premium</h3>
-                    <div class="price">Rp 30.000 <span>/ 60 hari</span></div>
-                    <ul class="features">
-                        <li>✓ Masa Aktif 60 Hari</li>
-                        <li>✓ Prioritas VIP Bandwidth</li>
-                        <li>✓ Multi-device Access</li>
-                    </ul>
-                </div>
-                <button onclick="selectPackage('Premium')" class="btn btn-outline">Pilih Paket</button>
+        
+        <div class="qris-box">
+            <img src="qris.jpg" alt="QRIS Pembayaran Cikuya Store" onerror="this.src='https://via.placeholder.com/200x200?text=Upload+qris.jpg+Ke+GitHub'">
+            <div class="qris-desc">
+                Scan QRIS di atas menggunakan Dana, OVO, GoPay, ShopeePay, atau Mobile Banking.<br>
+                <strong>Pastikan transfer sebelum menekan tombol order.</strong>
             </div>
         </div>
 
-        <!-- Form Pemesanan -->
-        <div class="form-box">
-            <h3 style="margin-bottom: 16px; font-size: 18px; text-align: center;">Form Buat Akun / Order</h3>
+        <form id="order-form-paid" onsubmit="submitOrder(event, false)">
+            <div class="form-group">
+                <label>Pilih Tipe Server</label>
+                <select id="server-paid" class="form-control" onchange="updateProtocols('paid')">
+                    <option value="Cloudfront Mini">Cloudfront Mini (SSH Only)</option>
+                    <option value="Cloudfront Reguler">Cloudfront Reguler (All Protocol)</option>
+                    <option value="Cloudfront Premium">Cloudfront Premium (All Protocol)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="user-paid" class="form-control" placeholder="Masukkan username akun" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="pass-paid" class="form-control" placeholder="Masukkan password akun" required>
+            </div>
+            <div class="form-group">
+                <label>Protokol</label>
+                <select id="proto-paid" class="form-control">
+                    <!-- Opsi protokol akan diisi secara dinamis oleh JavaScript -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Pilihan Masa Aktif</label>
+                <select id="plan-paid" class="form-control">
+                    <option value="Reguler (30 Hari)">Reguler (30 Hari) - Rp 15.000</option>
+                    <option value="Premium (60 Hari)">Premium (60 Hari) - Rp 30.000</option>
+                </select>
+            </div>
+            <button type="submit" id="btn-paid" class="btn btn-primary">
+                <i class="fa-solid fa-paper-plane"></i> Buat Akun Sekarang
+            </button>
+        </form>
 
-            <form id="orderForm">
-                <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" id="username" class="form-control" placeholder="Masukkan username" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="password" class="form-control" placeholder="Masukkan password" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Protokol</label>
-                    <select id="protocol" class="form-control">
-                        <option value="ssh">SSH</option>
-                        <option value="vmess">VMess</option>
-                        <option value="vless">VLess</option>
-                        <option value="trojan">Trojan</option>
-                        <option value="cloudfront">CloudFront</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Pilihan Paket</label>
-                    <select id="package" class="form-control">
-                        <option value="Mini">Mini (7 Hari)</option>
-                        <option value="Reguler" selected>Reguler (30 Hari)</option>
-                        <option value="Premium">Premium (60 Hari)</option>
-                    </select>
-                </div>
-
-                <div class="checkbox-group">
-                    <input type="checkbox" id="isTrial">
-                    <label for="isTrial">Coba Trial Gratis (1 Jam)</label>
-                </div>
-
-                <button type="submit" id="btnSubmit" class="btn">Proses Akun Sekarang</button>
-            </form>
-
-            <div id="loading">Memproses pembuatan akun...</div>
+        <div id="result-paid" class="result-box">
+            <div class="result-header">
+                <span><i class="fa-solid fa-circle-check"></i> Akun Berhasil Dibuat!</span>
+                <button class="btn-copy" onclick="copyResult('result-content-paid')"><i class="fa-solid fa-copy"></i> Salin</button>
+            </div>
+            <div id="result-content-paid" class="result-content"></div>
             
-            <div id="resultBox">
-                <h4>Akun Berhasil Dibuat!</h4>
-                <pre id="resultContent"></pre>
-            </div>
+            <a id="wa-confirm-btn" href="#" target="_blank" class="btn btn-wa">
+                <i class="fa-brands fa-whatsapp"></i> Konfirmasi Pembayaran ke WA Admin
+            </a>
         </div>
     </div>
 
-    <script>
-        const PROXY_URL = "https://quiet-thunder-3e73.karjo5261.workers.dev";
+    <!-- TAB 2: TRIAL GRATIS -->
+    <div id="tab-trial" class="card hidden">
+        <div class="card-title">
+            <i class="fa-solid fa-clock" style="color: var(--warning);"></i>
+            <span>Uji Coba Gratis</span>
+            <span class="badge-trial">15-20 Menit</span>
+        </div>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">
+            Tes kecepatan dan konektivitas server kami secara gratis selama 15–20 menit tanpa bayar.
+        </p>
 
-        function selectPackage(pkgName) {
-            document.getElementById('package').value = pkgName;
-            document.getElementById('orderForm').scrollIntoView({ behavior: 'smooth' });
+        <form id="order-form-trial" onsubmit="submitOrder(event, true)">
+            <div class="form-group">
+                <label>Pilih Tipe Server</label>
+                <select id="server-trial" class="form-control" onchange="updateProtocols('trial')">
+                    <option value="Cloudfront Mini">Cloudfront Mini (SSH Only)</option>
+                    <option value="Cloudfront Reguler">Cloudfront Reguler (All Protocol)</option>
+                    <option value="Cloudfront Premium">Cloudfront Premium (All Protocol)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Username Trial</label>
+                <input type="text" id="user-trial" class="form-control" placeholder="Username untuk trial" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="pass-trial" class="form-control" placeholder="Password untuk trial" required>
+            </div>
+            <div class="form-group">
+                <label>Protokol</label>
+                <select id="proto-trial" class="form-control">
+                    <!-- Opsi protokol akan diisi secara dinamis oleh JavaScript -->
+                </select>
+            </div>
+            <button type="submit" id="btn-trial" class="btn btn-warning">
+                <i class="fa-solid fa-bolt"></i> Ambil Akun Trial (15-20 Menit)
+            </button>
+        </form>
+
+        <div id="result-trial" class="result-box">
+            <div class="result-header">
+                <span><i class="fa-solid fa-circle-check"></i> Akun Trial Berhasil Dibuat!</span>
+                <button class="btn-copy" onclick="copyResult('result-content-trial')"><i class="fa-solid fa-copy"></i> Salin</button>
+            </div>
+            <div id="result-content-trial" class="result-content"></div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const WORKER_URL = "https://quiet-thunder-3e73.karjo5261-ops.workers.dev";
+    const ADMIN_WA = "6281234567890"; // Ganti dengan nomor WhatsApp kamu (format 62...)
+
+    function updateProtocols(suffix) {
+        const serverSelect = document.getElementById(`server-${suffix}`).value;
+        const protoSelect = document.getElementById(`proto-${suffix}`);
+
+        if (serverSelect === "Cloudfront Mini") {
+            protoSelect.innerHTML = `<option value="SSH">SSH SSL / WS</option>`;
+        } else {
+            protoSelect.innerHTML = `
+                <option value="SSH">SSH SSL / WS</option>
+                <option value="VMESS">VMess WS</option>
+                <option value="VLESS">VLess WS / gRPC</option>
+                <option value="TROJAN">Trojan WS</option>
+            `;
+        }
+    }
+
+    // Inisialisasi awal saat halaman dimuat
+    document.addEventListener("DOMContentLoaded", () => {
+        updateProtocols('paid');
+        updateProtocols('trial');
+    });
+
+    function switchTab(type) {
+        const paidTab = document.getElementById('tab-paid');
+        const trialTab = document.getElementById('tab-trial');
+        const paidBtn = document.getElementById('tab-paid-btn');
+        const trialBtn = document.getElementById('tab-trial-btn');
+
+        if (type === 'paid') {
+            paidTab.classList.remove('hidden');
+            trialTab.classList.add('hidden');
+            paidBtn.classList.add('active');
+            trialBtn.classList.remove('active');
+        } else {
+            paidTab.classList.add('hidden');
+            trialTab.classList.remove('hidden');
+            paidBtn.classList.remove('active');
+            trialBtn.classList.add('active');
+        }
+    }
+
+    async function submitOrder(e, isTrial) {
+        e.preventDefault();
+
+        const suffix = isTrial ? 'trial' : 'paid';
+        const server = document.getElementById(`server-${suffix}`).value;
+        const username = document.getElementById(`user-${suffix}`).value;
+        const password = document.getElementById(`pass-${suffix}`).value;
+        const protocol = document.getElementById(`proto-${suffix}`).value;
+        const button = document.getElementById(`btn-${suffix}`);
+        const resultBox = document.getElementById(`result-${suffix}`);
+        const resultContent = document.getElementById(`result-content-${suffix}`);
+
+        let packagePlan = "Trial (15-20 Menit)";
+        if (!isTrial) {
+            packagePlan = document.getElementById('plan-paid').value;
         }
 
-        document.getElementById('orderForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
-            const protocol = document.getElementById('protocol').value;
-            const packageVal = document.getElementById('package').value;
-            const isTrial = document.getElementById('isTrial').checked;
+        button.disabled = true;
+        button.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Memproses...`;
+        resultBox.style.display = 'none';
 
-            const loading = document.getElementById('loading');
-            const resultBox = document.getElementById('resultBox');
-            const resultContent = document.getElementById('resultContent');
-            const btnSubmit = document.getElementById('btnSubmit');
+        const payload = {
+            server: server,
+            username: username,
+            password: password,
+            protocol: protocol,
+            package: packagePlan,
+            is_trial: isTrial
+        };
 
-            loading.style.display = 'block';
-            resultBox.style.display = 'none';
-            btnSubmit.disabled = true;
+        try {
+            const response = await fetch(WORKER_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
 
-            const payload = {
-                username: username,
-                password: password,
-                protocol: protocol,
-                package: packageVal,
-                is_trial: isTrial
-            };
+            const data = await response.json();
 
-            try {
-                const response = await fetch(PROXY_URL, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload)
-                });
+            resultBox.style.display = 'block';
+            if (data.error) {
+                resultContent.innerHTML = `<span style="color: #f85149;">Error: ${data.error}</span>`;
+            } else {
+                const textResult = typeof data === 'object' ? JSON.stringify(data, null, 2) : data;
+                resultContent.innerText = textResult;
 
-                const data = await response.json();
-
-                loading.style.display = 'none';
-                btnSubmit.disabled = false;
-                resultBox.style.display = 'block';
-
-                if (response.ok) {
-                    resultContent.textContent = JSON.stringify(data, null, 2);
-                } else {
-                    resultContent.textContent = `Error: ${data.message || 'Gagal membuat akun'}`;
+                if (!isTrial) {
+                    const waBtn = document.getElementById('wa-confirm-btn');
+                    const waText = encodeURIComponent(`Halo Admin Cikuya Store, saya sudah transfer untuk pemesanan VPN:\n\nServer: ${server}\nUsername: ${username}\nProtokol: ${protocol}\nPaket: ${packagePlan}\n\nMohon verifikasi bukti pembayaran saya.`);
+                    waBtn.href = `https://wa.me/${ADMIN_WA}?text=${waText}`;
                 }
-            } catch (err) {
-                loading.style.display = 'none';
-                btnSubmit.disabled = false;
-                resultBox.style.display = 'block';
-                resultContent.textContent = `Terjadi kesalahan jaringan: ${err.message}`;
             }
+        } catch (err) {
+            resultBox.style.display = 'block';
+            resultContent.innerHTML = `<span style="color: #f85149;">Gagal mengontak server Worker. Coba beberapa saat lagi.</span>`;
+        } finally {
+            button.disabled = false;
+            button.innerHTML = isTrial 
+                ? `<i class="fa-solid fa-bolt"></i> Ambil Akun Trial (15-20 Menit)`
+                : `<i class="fa-solid fa-paper-plane"></i> Buat Akun Sekarang`;
+        }
+    }
+
+    function copyResult(elementId) {
+        const text = document.getElementById(elementId).innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Detail akun berhasil disalin!");
         });
-    </script>
+    }
+</script>
+
 </body>
 </html>

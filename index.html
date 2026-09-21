@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cikuya Digital Store - Layanan VPN Premium</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+        body { background-color: #0f172a; color: #f8fafc; padding-bottom: 40px; }
+        header { background-color: #1e293b; padding: 16px; border-bottom: 1px solid #334155; text-align: center; }
+        header h1 { color: #38bdf8; font-size: 20px; }
+        .badge { background-color: #1e3a8a; color: #93c5fd; font-size: 11px; padding: 3px 8px; border-radius: 12px; margin-top: 4px; display: inline-block; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px 16px; }
+        .section-title { text-align: center; margin-bottom: 20px; }
+        .section-title h2 { font-size: 22px; color: #fff; }
+        .section-title p { color: #94a3b8; font-size: 13px; margin-top: 4px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 30px; }
+        .card { background-color: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+        .card.popular { border: 2px solid #3b82f6; }
+        .popular-badge { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background-color: #3b82f6; color: #fff; font-size: 10px; font-weight: bold; padding: 2px 10px; border-radius: 10px; }
+        .card h3 { color: #38bdf8; font-size: 18px; margin-bottom: 8px; }
+        .price { font-size: 22px; font-weight: bold; margin-bottom: 12px; }
+        .price span { font-size: 12px; color: #94a3b8; font-weight: normal; }
+        .features { list-style: none; font-size: 13px; color: #cbd5e1; margin-bottom: 16px; }
+        .features li { margin-bottom: 6px; }
+        
+        .btn { width: 100%; padding: 10px; background-color: #3b82f6; color: #fff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-align: center; }
+        .btn-outline { background-color: #334155; color: #fff; }
+        .btn:hover { background-color: #2563eb; }
+        
+        .form-box { background-color: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; max-width: 500px; margin: 0 auto; }
+        .form-group { margin-bottom: 14px; }
+        .form-group label { display: block; font-size: 13px; color: #cbd5e1; margin-bottom: 6px; }
+        .form-control { width: 100%; padding: 10px; background-color: #0f172a; border: 1px solid #334155; border-radius: 8px; color: #fff; font-size: 14px; outline: none; }
+        .form-control:focus { border-color: #3b82f6; }
+        .checkbox-group { display: flex; align-items: center; gap: 8px; margin: 10px 0; font-size: 13px; color: #cbd5e1; }
+        
+        #loading { text-align: center; color: #38bdf8; font-size: 14px; margin-top: 10px; display: none; }
+        #resultBox { margin-top: 20px; background-color: #0f172a; padding: 12px; border-radius: 8px; border: 1px solid #334155; display: none; }
+        #resultBox h4 { color: #4ade80; font-size: 14px; margin-bottom: 8px; }
+        #resultContent { font-size: 11px; color: #cbd5e1; white-space: pre-wrap; word-break: break-all; font-family: monospace; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Cikuya Digital Store</h1>
+        <span class="badge">Online Service</span>
+    </header>
+
+    <div class="container">
+        <div class="section-title">
+            <h2>Pilih Paket VPN</h2>
+            <p>Layanan tunnel SSH, VMess, VLess, Trojan, & CloudFront</p>
+        </div>
+
+        <div class="grid">
+            <!-- Paket Mini -->
+            <div class="card">
+                <div>
+                    <h3>Paket Mini</h3>
+                    <div class="price">Rp 5.000 <span>/ 7 hari</span></div>
+                    <ul class="features">
+                        <li>✓ Masa Aktif 7 Hari</li>
+                        <li>✓ High Speed Server</li>
+                        <li>✓ Support All Protocol</li>
+                    </ul>
+                </div>
+                <button onclick="selectPackage('Mini')" class="btn btn-outline">Pilih Paket</button>
+            </div>
+
+            <!-- Paket Reguler -->
+            <div class="card popular">
+                <span class="popular-badge">POPULER</span>
+                <div>
+                    <h3>Paket Reguler</h3>
+                    <div class="price">Rp 15.000 <span>/ 30 hari</span></div>
+                    <ul class="features">
+                        <li>✓ Masa Aktif 30 Hari</li>
+                        <li>✓ High Speed Server</li>
+                        <li>✓ Unlimited Bandwidth</li>
+                    </ul>
+                </div>
+                <button onclick="selectPackage('Reguler')" class="btn">Pilih Paket</button>
+            </div>
+
+            <!-- Paket Premium -->
+            <div class="card">
+                <div>
+                    <h3>Paket Premium</h3>
+                    <div class="price">Rp 30.000 <span>/ 60 hari</span></div>
+                    <ul class="features">
+                        <li>✓ Masa Aktif 60 Hari</li>
+                        <li>✓ Prioritas VIP Bandwidth</li>
+                        <li>✓ Multi-device Access</li>
+                    </ul>
+                </div>
+                <button onclick="selectPackage('Premium')" class="btn btn-outline">Pilih Paket</button>
+            </div>
+        </div>
+
+        <!-- Form Pemesanan -->
+        <div class="form-box">
+            <h3 style="margin-bottom: 16px; font-size: 18px; text-align: center;">Form Buat Akun / Order</h3>
+
+            <form id="orderForm">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="username" class="form-control" placeholder="Masukkan username" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Masukkan password" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Protokol</label>
+                    <select id="protocol" class="form-control">
+                        <option value="ssh">SSH</option>
+                        <option value="vmess">VMess</option>
+                        <option value="vless">VLess</option>
+                        <option value="trojan">Trojan</option>
+                        <option value="cloudfront">CloudFront</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Pilihan Paket</label>
+                    <select id="package" class="form-control">
+                        <option value="Mini">Mini (7 Hari)</option>
+                        <option value="Reguler" selected>Reguler (30 Hari)</option>
+                        <option value="Premium">Premium (60 Hari)</option>
+                    </select>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="isTrial">
+                    <label for="isTrial">Coba Trial Gratis (1 Jam)</label>
+                </div>
+
+                <button type="submit" id="btnSubmit" class="btn">Proses Akun Sekarang</button>
+            </form>
+
+            <div id="loading">Memproses pembuatan akun...</div>
+            
+            <div id="resultBox">
+                <h4>Akun Berhasil Dibuat!</h4>
+                <pre id="resultContent"></pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const PROXY_URL = "https://quiet-thunder-3e73.karjo5261.workers.dev";
+
+        function selectPackage(pkgName) {
+            document.getElementById('package').value = pkgName;
+            document.getElementById('orderForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.getElementById('orderForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const protocol = document.getElementById('protocol').value;
+            const packageVal = document.getElementById('package').value;
+            const isTrial = document.getElementById('isTrial').checked;
+
+            const loading = document.getElementById('loading');
+            const resultBox = document.getElementById('resultBox');
+            const resultContent = document.getElementById('resultContent');
+            const btnSubmit = document.getElementById('btnSubmit');
+
+            loading.style.display = 'block';
+            resultBox.style.display = 'none';
+            btnSubmit.disabled = true;
+
+            const payload = {
+                username: username,
+                password: password,
+                protocol: protocol,
+                package: packageVal,
+                is_trial: isTrial
+            };
+
+            try {
+                const response = await fetch(PROXY_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+
+                loading.style.display = 'none';
+                btnSubmit.disabled = false;
+                resultBox.style.display = 'block';
+
+                if (response.ok) {
+                    resultContent.textContent = JSON.stringify(data, null, 2);
+                } else {
+                    resultContent.textContent = `Error: ${data.message || 'Gagal membuat akun'}`;
+                }
+            } catch (err) {
+                loading.style.display = 'none';
+                btnSubmit.disabled = false;
+                resultBox.style.display = 'block';
+                resultContent.textContent = `Terjadi kesalahan jaringan: ${err.message}`;
+            }
+        });
+    </script>
+</body>
+</html>

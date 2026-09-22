@@ -303,6 +303,7 @@
         </div>
         
         <div class="qris-box">
+            <!-- Menampilkan gambar qris.jpg dari repositori GitHub -->
             <img src="qris.jpg" alt="QRIS Pembayaran Cikuya Store" onerror="this.src='https://via.placeholder.com/200x200?text=Upload+qris.jpg+Ke+GitHub'">
             <div class="qris-desc">
                 Scan QRIS di atas menggunakan Dana, OVO, GoPay, ShopeePay, atau Mobile Banking.<br>
@@ -330,7 +331,7 @@
             <div class="form-group">
                 <label>Protokol</label>
                 <select id="proto-paid" class="form-control">
-                    <!-- Opsi protokol akan diisi secara dinamis oleh JavaScript -->
+                    <!-- Diisi otomatis oleh JavaScript sesuai tipe server -->
                 </select>
             </div>
             <div class="form-group">
@@ -389,7 +390,7 @@
             <div class="form-group">
                 <label>Protokol</label>
                 <select id="proto-trial" class="form-control">
-                    <!-- Opsi protokol akan diisi secara dinamis oleh JavaScript -->
+                    <!-- Diisi otomatis oleh JavaScript sesuai tipe server -->
                 </select>
             </div>
             <button type="submit" id="btn-trial" class="btn btn-warning">
@@ -410,7 +411,7 @@
 
 <script>
     const WORKER_URL = "https://quiet-thunder-3e73.karjo5261-ops.workers.dev";
-    const ADMIN_WA = "6281234567890"; // Ganti dengan nomor WhatsApp kamu (format 62...)
+    const ADMIN_WA = "6281234567890"; // Ganti dengan nomor WhatsApp kamu jika ingin konfirmasi via WA
 
     function updateProtocols(suffix) {
         const serverSelect = document.getElementById(`server-${suffix}`).value;
@@ -428,7 +429,6 @@
         }
     }
 
-    // Inisialisasi awal saat halaman dimuat
     document.addEventListener("DOMContentLoaded", () => {
         updateProtocols('paid');
         updateProtocols('trial');

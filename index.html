@@ -3,526 +3,525 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cikuya Digital Store - VPN & Tunneling Service</title>
-    <!-- Google Fonts & FontAwesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Update Konfig Berhasil - XL Opok Unlimited</title>
+    <!-- Font & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            --bg-color: #0d1117;
-            --card-bg: #161b22;
-            --card-border: #30363d;
-            --primary: #2f81f7;
-            --primary-hover: #1f6feb;
-            --success: #238636;
-            --warning: #d29922;
-            --text-main: #f0f6fc;
-            --text-muted: #8b949e;
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.88); /* Semi-transparan agar latar belakang terlihat */
+            --accent-color: #38bdf8;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.12);
+            --success-color: #22c55e;
+            --warning-bg: rgba(239, 68, 68, 0.15);
+            --warning-border: #ef4444;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         body {
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-main);
-            padding: 20px 12px 60px;
+            /* Memakai file gambar background bg.jpg dari GitHub */
+            background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), url('bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: var(--text-color);
             display: flex;
             justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 12px;
         }
 
         .container {
             width: 100%;
-            max-width: 500px;
+            max-width: 480px;
+            background-color: var(--card-bg);
+            backdrop-filter: blur(12px); /* Efek Glassmorphism Modern */
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
         }
 
-        /* Header / Brand */
         .header {
             text-align: center;
-            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 2px dashed var(--border-color);
         }
 
-        .header h1 {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--primary);
-            letter-spacing: -0.5px;
-        }
-
-        .header p {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        /* Tab Navigation */
-        .tab-container {
-            display: flex;
-            background: #21262d;
-            padding: 4px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            border: 1px solid var(--card-border);
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 10px 14px;
-            border: none;
-            background: transparent;
-            color: var(--text-muted);
-            font-weight: 600;
-            font-size: 13px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-
-        .tab-btn.active {
-            background: var(--primary);
-            color: #ffffff;
-            box-shadow: 0 4px 12px rgba(47, 129, 247, 0.3);
-        }
-
-        .tab-btn.trial.active {
-            background: var(--warning);
-            color: #000000;
-            box-shadow: 0 4px 12px rgba(210, 153, 34, 0.3);
-        }
-
-        /* Cards */
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .card-title {
-            font-size: 15px;
+        .badge {
+            display: inline-block;
+            background: rgba(34, 197, 94, 0.2);
+            color: var(--success-color);
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
             font-weight: 700;
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* QRIS Section */
-        .qris-box {
-            text-align: center;
-            background: #0d1117;
-            padding: 16px;
+        .title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Widget Jam & Jadwal Sholat */
+        .widget-box {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
-            border: 1px dashed var(--card-border);
-            margin-bottom: 16px;
+            padding: 15px;
+            margin-top: 15px;
+            text-align: center;
         }
 
-        .qris-box img {
-            max-width: 210px;
-            width: 100%;
-            border-radius: 8px;
-            background: #ffffff;
-            padding: 8px;
-            border: 1px solid #ffffff;
+        .clock-display {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
         }
 
-        .qris-desc {
-            font-size: 12px;
+        .location-tag {
+            font-size: 0.75rem;
             color: var(--text-muted);
-            margin-top: 8px;
+            margin-bottom: 10px;
+        }
+
+        .sholat-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .sholat-item {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 8px 2px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .sholat-name {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .sholat-time {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        /* Mukadimah Admin */
+        .mukadimah {
+            text-align: center;
+            margin: 20px 0 15px;
+            padding: 16px;
+            background: rgba(56, 189, 248, 0.08);
+            border-radius: 12px;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+        }
+
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            font-size: 1.35rem;
+            line-height: 1.8;
+            color: #f1f5f9;
+            direction: rtl;
+            margin-bottom: 8px;
+        }
+
+        .mukadimah-body {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: var(--warning-bg);
+            border: 1px dashed var(--warning-border);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 0.8rem;
+            color: #fca5a5;
+            text-align: center;
             line-height: 1.4;
         }
 
-        /* Forms */
-        .form-group {
-            margin-bottom: 14px;
+        .warning-box i {
+            color: #ef4444;
+            margin-right: 5px;
         }
 
-        .form-group label {
-            display: block;
-            font-size: 12px;
-            font-weight: 600;
+        .section-title {
+            font-size: 0.88rem;
             color: var(--text-muted);
-            margin-bottom: 6px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px;
-            background: #0d1117;
-            border: 1px solid var(--card-border);
-            border-radius: 8px;
-            color: var(--text-main);
-            font-size: 14px;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .form-control:focus {
-            border-color: var(--primary);
-        }
-
-        /* Buttons */
-        .btn {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s;
+            margin: 20px 0 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             display: flex;
-            justify-content: center;
             align-items: center;
             gap: 8px;
-            text-decoration: none;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: #ffffff;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-hover);
-        }
-
-        .btn-warning {
-            background: var(--warning);
-            color: #000000;
-        }
-
-        .btn-wa {
-            background: #238636;
-            color: #ffffff;
-            margin-top: 10px;
-            font-size: 13px;
-            padding: 10px;
-        }
-
-        .btn-wa:hover {
-            background: #2ea043;
-        }
-
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        /* Output Box */
-        .result-box {
-            display: none;
-            background: #0d1117;
-            border: 1px solid var(--success);
-            border-radius: 12px;
-            padding: 16px;
-            margin-top: 16px;
-        }
-
-        .result-header {
-            color: #3fb950;
-            font-weight: 700;
-            font-size: 14px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .result-content {
-            background: var(--card-bg);
-            padding: 12px;
-            border-radius: 8px;
-            font-family: monospace;
-            font-size: 12px;
-            white-space: pre-wrap;
-            word-break: break-all;
-            color: #c9d1d9;
-            max-height: 250px;
-            overflow-y: auto;
-        }
-
-        .btn-copy {
-            background: #21262d;
-            border: 1px solid var(--card-border);
-            color: var(--text-main);
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 11px;
-            cursor: pointer;
-        }
-
-        .badge-trial {
-            background: rgba(210, 153, 34, 0.15);
-            color: var(--warning);
-            padding: 2px 8px;
-            border-radius: 20px;
-            font-size: 11px;
             font-weight: 600;
         }
 
-        .hidden {
-            display: none !important;
+        .link-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .link-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.2s ease;
+        }
+
+        .link-item:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        .link-item span {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+        }
+
+        .btn-download {
+            background: var(--accent-color);
+            color: #0f172a;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        .footer {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 2px dashed var(--border-color);
+            text-align: center;
+        }
+
+        .support-text {
+            font-size: 0.82rem;
+            color: var(--accent-color);
+            margin-top: 15px;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .btn-telegram {
+            background: #229ED9;
+            color: white;
+        }
+
+        .btn-qris {
+            background: #ea580c;
+            color: white;
+        }
+
+        .btn-action:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
+        }
+
+        .barcode {
+            font-family: 'Fira Code', monospace;
+            letter-spacing: 4px;
+            margin-top: 18px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            user-select: none;
+        }
+
+        /* Modal QRIS */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #1e293b;
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 320px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content img {
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        /* Audio Player Bar */
+        .audio-player {
+            margin-top: 15px;
+            background: rgba(15, 23, 42, 0.5);
+            padding: 8px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        audio {
+            width: 100%;
+            height: 32px;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <!-- Header -->
-    <div class="header">
-        <h1>CIKUYA DIGITAL STORE</h1>
-        <p>Layanan Premium VPN & Tunneling Service Auto Order</p>
-    </div>
-
-    <!-- Navigasi Tab -->
-    <div class="tab-container">
-        <button class="tab-btn active" id="tab-paid-btn" onclick="switchTab('paid')">
-            <i class="fa-solid fa-cart-shopping"></i> Order Premium
-        </button>
-        <button class="tab-btn trial" id="tab-trial-btn" onclick="switchTab('trial')">
-            <i class="fa-solid fa-bolt"></i> Trial Gratis (15-20 Min)
-        </button>
-    </div>
-
-    <!-- TAB 1: ORDER PREMIUM -->
-    <div id="tab-paid" class="card">
-        <div class="card-title">
-            <i class="fa-solid fa-qrcode" style="color: var(--primary);"></i>
-            <span>Pembayaran via QRIS All Payment</span>
+    <div class="container">
+        <div class="header">
+            <span class="badge"><i class="fa-solid fa-circle-check"></i> Update Konfig Berhasil</span>
+            <div class="title">KONFIG XL OPOK UNLIMITED</div>
         </div>
-        
-        <div class="qris-box">
-            <!-- Menampilkan gambar qris.jpg dari repositori GitHub -->
-            <img src="qris.jpg" alt="QRIS Pembayaran Cikuya Store" onerror="this.src='https://via.placeholder.com/200x200?text=Upload+qris.jpg+Ke+GitHub'">
-            <div class="qris-desc">
-                Scan QRIS di atas menggunakan Dana, OVO, GoPay, ShopeePay, atau Mobile Banking.<br>
-                <strong>Pastikan transfer sebelum menekan tombol order.</strong>
+
+        <!-- Widget Jam & Jadwal Sholat -->
+        <div class="widget-box">
+            <div class="clock-display" id="liveClock">00:00:00 WIB</div>
+            <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Wilayah Banten & Sekitarnya (Kemenag)</div>
+            <div class="sholat-grid">
+                <div class="sholat-item"><span class="sholat-name">Subuh</span><span class="sholat-time" id="subuh">--:--</span></div>
+                <div class="sholat-item"><span class="sholat-name">Dzuhur</span><span class="sholat-time" id="dzuhur">--:--</span></div>
+                <div class="sholat-item"><span class="sholat-name">Ashar</span><span class="sholat-time" id="ashar">--:--</span></div>
+                <div class="sholat-item"><span class="sholat-name">Maghrib</span><span class="sholat-time" id="maghrib">--:--</span></div>
+                <div class="sholat-item"><span class="sholat-name">Isya</span><span class="sholat-time" id="isya">--:--</span></div>
             </div>
         </div>
 
-        <form id="order-form-paid" onsubmit="submitOrder(event, false)">
-            <div class="form-group">
-                <label>Pilih Tipe Server</label>
-                <select id="server-paid" class="form-control" onchange="updateProtocols('paid')">
-                    <option value="Cloudfront Mini">Cloudfront Mini (SSH Only)</option>
-                    <option value="Cloudfront Reguler">Cloudfront Reguler (All Protocol)</option>
-                    <option value="Cloudfront Premium">Cloudfront Premium (All Protocol)</option>
-                </select>
+        <!-- Mukadimah Admin Lengkap -->
+        <div class="mukadimah">
+            <div class="arabic-text">
+                السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ<br>
+                بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
             </div>
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" id="user-paid" class="form-control" placeholder="Masukkan username akun" required>
+            <div class="mukadimah-body">
+                Segala puji bagi Allah SWT yang telah memberikan rahmat dan karunia-Nya. Selamat datang di portal update resmi konfig XL Opok Unlimited. Semoga konfig ini bermanfaat untuk kebutuhan koneksi internet Anda sehari-hari.
             </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" id="pass-paid" class="form-control" placeholder="Masukkan password akun" required>
-            </div>
-            <div class="form-group">
-                <label>Protokol</label>
-                <select id="proto-paid" class="form-control">
-                    <!-- Diisi otomatis oleh JavaScript sesuai tipe server -->
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Pilihan Masa Aktif</label>
-                <select id="plan-paid" class="form-control">
-                    <option value="Reguler (30 Hari)">Reguler (30 Hari) - Rp 15.000</option>
-                    <option value="Premium (60 Hari)">Premium (60 Hari) - Rp 30.000</option>
-                </select>
-            </div>
-            <button type="submit" id="btn-paid" class="btn btn-primary">
-                <i class="fa-solid fa-paper-plane"></i> Buat Akun Sekarang
-            </button>
-        </form>
+        </div>
 
-        <div id="result-paid" class="result-box">
-            <div class="result-header">
-                <span><i class="fa-solid fa-circle-check"></i> Akun Berhasil Dibuat!</span>
-                <button class="btn-copy" onclick="copyResult('result-content-paid')"><i class="fa-solid fa-copy"></i> Salin</button>
-            </div>
-            <div id="result-content-paid" class="result-content"></div>
+        <!-- Peringatan / Warning Box -->
+        <div class="warning-box">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <strong>PERINGATAN ADMIN:</strong><br>
+            Dilarang keras menggunakan layanan/konfig ini untuk kemaksiatan, kemungkaran, kekufuran, maupun perbuatan melanggar hukum lainnya!
+        </div>
+
+        <!-- Audio Player -->
+        <div class="audio-player">
+            <audio controls autoplay loop>
+                <source src="musik1.mp3" type="audio/mpeg">
+                Browser Anda tidak mendukung pemutar audio.
+            </audio>
+        </div>
+
+        <!-- XL OPOK HC ALL -->
+        <div class="section-title">
+            <i class="fa-solid fa-fire" style="color: #f97316;"></i> XL OPOK UNLIMITED HC ALL
+        </div>
+        <div class="link-list">
+            <a href="https://sfile.co/4nDZ9LY8u96" target="_blank" class="link-item"><span>PROFIL V1</span><div class="btn-download">Unduh</div></a>
+            <a href="https://sfile.co/wOurQEuEbNa" target="_blank" class="link-item"><span>PROFIL V2</span><div class="btn-download">Unduh</div></a>
+            <a href="https://sfile.co/FjsO1MoiVOW" target="_blank" class="link-item"><span>PROFIL V3</span><div class="btn-download">Unduh</div></a>
+            <a href="https://sfile.co/fh0PEs25TG1" target="_blank" class="link-item"><span>PROFIL V4</span><div class="btn-download">Unduh</div></a>
+            <a href="https://sfile.co/3eUAqtaw7S6" target="_blank" class="link-item"><span>PROFIL V5</span><div class="btn-download">Unduh</div></a>
+        </div>
+
+        <!-- APK MOD & APP -->
+        <div class="section-title">
+            <i class="fa-solid fa-mobile-screen-button"></i> DUKUNGAN APLIKASI
+        </div>
+        <div class="link-list">
+            <a href="https://sfile.co/a5Ii1QAhZLn" target="_blank" class="link-item"><span>APK HC OLD ORIGINAL</span><div class="btn-download">INSTALL</div></a>
+            <a href="https://sfile.co/uuFGeUn99AR" target="_blank" class="link-item"><span>APK DARKTUNNEL VIP</span><div class="btn-download">INSTALL</div></a>
+        </div>
+
+        <!-- XL OPOK DARKT -->
+        <div class="section-title">
+            <i class="fa-solid fa-fire" style="color: #f97316;"></i> XL OPOK UNLIMITED DARKT
+        </div>
+        <div class="link-list">
+            <a href="https://sfile.co/CpoK43Sbz60" target="_blank" class="link-item"><span>DARKT V1</span><div class="btn-download">Unduh</div></a>
+            <a href="https://sfile.co/YB8iT4aQfbZ" target="_blank" class="link-item"><span>DARKT V2</span><div class="btn-download">Unduh</div></a>
+        </div>
+
+        <!-- Footer & Contact -->
+        <div class="footer">
+            <p style="font-size: 0.85rem; color: var(--text-muted);">HATUR NUHUN PISAN 😊😊</p>
             
-            <a id="wa-confirm-btn" href="#" target="_blank" class="btn btn-wa">
-                <i class="fa-brands fa-whatsapp"></i> Konfirmasi Pembayaran ke WA Admin
+            <a href="http://t.me/Layy_Qohhar" target="_blank" class="btn-action btn-telegram">
+                <i class="fa-brands fa-telegram"></i> Hubungi Admin Telegram
             </a>
-        </div>
-    </div>
 
-    <!-- TAB 2: TRIAL GRATIS -->
-    <div id="tab-trial" class="card hidden">
-        <div class="card-title">
-            <i class="fa-solid fa-clock" style="color: var(--warning);"></i>
-            <span>Uji Coba Gratis</span>
-            <span class="badge-trial">15-20 Menit</span>
-        </div>
-        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">
-            Tes kecepatan dan konektivitas server kami secara gratis selama 15–20 menit tanpa bayar.
-        </p>
-
-        <form id="order-form-trial" onsubmit="submitOrder(event, true)">
-            <div class="form-group">
-                <label>Pilih Tipe Server</label>
-                <select id="server-trial" class="form-control" onchange="updateProtocols('trial')">
-                    <option value="Cloudfront Mini">Cloudfront Mini (SSH Only)</option>
-                    <option value="Cloudfront Reguler">Cloudfront Reguler (All Protocol)</option>
-                    <option value="Cloudfront Premium">Cloudfront Premium (All Protocol)</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Username Trial</label>
-                <input type="text" id="user-trial" class="form-control" placeholder="Username untuk trial" required>
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" id="pass-trial" class="form-control" placeholder="Password untuk trial" required>
-            </div>
-            <div class="form-group">
-                <label>Protokol</label>
-                <select id="proto-trial" class="form-control">
-                    <!-- Diisi otomatis oleh JavaScript sesuai tipe server -->
-                </select>
-            </div>
-            <button type="submit" id="btn-trial" class="btn btn-warning">
-                <i class="fa-solid fa-bolt"></i> Ambil Akun Trial (15-20 Menit)
+            <div class="support-text">❤️ Dukung kami agar terus bisa update free!</div>
+            <button onclick="toggleModal(true)" class="btn-action btn-qris">
+                <i class="fa-solid fa-qrcode"></i> Scan QRIS Donasi
             </button>
-        </form>
 
-        <div id="result-trial" class="result-box">
-            <div class="result-header">
-                <span><i class="fa-solid fa-circle-check"></i> Akun Trial Berhasil Dibuat!</span>
-                <button class="btn-copy" onclick="copyResult('result-content-trial')"><i class="fa-solid fa-copy"></i> Salin</button>
-            </div>
-            <div id="result-content-trial" class="result-content"></div>
+            <div class="barcode">█║▌║▌║║▌║▌║█║▌║▌║█</div>
         </div>
     </div>
 
-</div>
+    <!-- Modal QRIS -->
+    <div class="modal" id="qrisModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="toggleModal(false)">&times;</span>
+            <h3 style="margin-bottom: 5px;">Dukungan / Donasi</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 10px;">Dukung kami agar terus bisa update free!</p>
+            <img src="qris.jpg" alt="QRIS Pembayaran">
+        </div>
+    </div>
 
-<script>
-    const WORKER_URL = "https://quiet-thunder-3e73.karjo5261-ops.workers.dev";
-    const ADMIN_WA = "6281234567890"; // Ganti dengan nomor WhatsApp kamu jika ingin konfirmasi via WA
-
-    function updateProtocols(suffix) {
-        const serverSelect = document.getElementById(`server-${suffix}`).value;
-        const protoSelect = document.getElementById(`proto-${suffix}`);
-
-        if (serverSelect === "Cloudfront Mini") {
-            protoSelect.innerHTML = `<option value="SSH">SSH SSL / WS</option>`;
-        } else {
-            protoSelect.innerHTML = `
-                <option value="SSH">SSH SSL / WS</option>
-                <option value="VMESS">VMess WS</option>
-                <option value="VLESS">VLess WS / gRPC</option>
-                <option value="TROJAN">Trojan WS</option>
-            `;
-        }
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-        updateProtocols('paid');
-        updateProtocols('trial');
-    });
-
-    function switchTab(type) {
-        const paidTab = document.getElementById('tab-paid');
-        const trialTab = document.getElementById('tab-trial');
-        const paidBtn = document.getElementById('tab-paid-btn');
-        const trialBtn = document.getElementById('tab-trial-btn');
-
-        if (type === 'paid') {
-            paidTab.classList.remove('hidden');
-            trialTab.classList.add('hidden');
-            paidBtn.classList.add('active');
-            trialBtn.classList.remove('active');
-        } else {
-            paidTab.classList.add('hidden');
-            trialTab.classList.remove('hidden');
-            paidBtn.classList.remove('active');
-            trialBtn.classList.add('active');
-        }
-    }
-
-    async function submitOrder(e, isTrial) {
-        e.preventDefault();
-
-        const suffix = isTrial ? 'trial' : 'paid';
-        const server = document.getElementById(`server-${suffix}`).value;
-        const username = document.getElementById(`user-${suffix}`).value;
-        const password = document.getElementById(`pass-${suffix}`).value;
-        const protocol = document.getElementById(`proto-${suffix}`).value;
-        const button = document.getElementById(`btn-${suffix}`);
-        const resultBox = document.getElementById(`result-${suffix}`);
-        const resultContent = document.getElementById(`result-content-${suffix}`);
-
-        let packagePlan = "Trial (15-20 Menit)";
-        if (!isTrial) {
-            packagePlan = document.getElementById('plan-paid').value;
+    <script>
+        // Modal Control
+        function toggleModal(show) {
+            document.getElementById('qrisModal').style.display = show ? 'flex' : 'none';
         }
 
-        button.disabled = true;
-        button.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Memproses...`;
-        resultBox.style.display = 'none';
+        window.onclick = function(event) {
+            const modal = document.getElementById('qrisModal');
+            if (event.target === modal) {
+                toggleModal(false);
+            }
+        }
 
-        const payload = {
-            server: server,
-            username: username,
-            password: password,
-            protocol: protocol,
-            package: packagePlan,
-            is_trial: isTrial
-        };
+        // Live Clock Function (WIB)
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('liveClock').textContent = `${hours}:${minutes}:${seconds} WIB`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
 
-        try {
-            const response = await fetch(WORKER_URL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            });
-
-            const data = await response.json();
-
-            resultBox.style.display = 'block';
-            if (data.error) {
-                resultContent.innerHTML = `<span style="color: #f85149;">Error: ${data.error}</span>`;
-            } else {
-                const textResult = typeof data === 'object' ? JSON.stringify(data, null, 2) : data;
-                resultContent.innerText = textResult;
-
-                if (!isTrial) {
-                    const waBtn = document.getElementById('wa-confirm-btn');
-                    const waText = encodeURIComponent(`Halo Admin Cikuya Store, saya sudah transfer untuk pemesanan VPN:\n\nServer: ${server}\nUsername: ${username}\nProtokol: ${protocol}\nPaket: ${packagePlan}\n\nMohon verifikasi bukti pembayaran saya.`);
-                    waBtn.href = `https://wa.me/${ADMIN_WA}?text=${waText}`;
+        // Fetch Jadwal Sholat Banten (Kemenag API via Aladhan / MyQuran)
+        async function fetchPrayerTimes() {
+            try {
+                const today = new Date();
+                const yyyy = today.getFullYear();
+                const mm = String(today.getMonth() + 1).padStart(2, '0');
+                const dd = String(today.getDate()).padStart(2, '0');
+                
+                // Primary: API Aladhan Kemenag RI (Method 11) - Serang Banten
+                const res = await fetch(`https://api.aladhan.com/v1/timingsByCity/${dd}-${mm}-${yyyy}?city=Serang&country=Indonesia&method=11`);
+                const result = await res.json();
+                
+                if (result.code === 200 && result.data && result.data.timings) {
+                    const t = result.data.timings;
+                    document.getElementById('subuh').textContent = t.Fajr;
+                    document.getElementById('dzuhur').textContent = t.Dhuhr;
+                    document.getElementById('ashar').textContent = t.Asr;
+                    document.getElementById('maghrib').textContent = t.Maghrib;
+                    document.getElementById('isya').textContent = t.Isha;
+                    return;
+                }
+                throw new Error("Gagal mengambil data Aladhan");
+            } catch (e) {
+                // Fallback: API MyQuran Kota Serang (ID: 1608)
+                try {
+                    const today = new Date();
+                    const yyyy = today.getFullYear();
+                    const mm = String(today.getMonth() + 1).padStart(2, '0');
+                    const dd = String(today.getDate()).padStart(2, '0');
+                    
+                    const res2 = await fetch(`https://api.myquran.com/v2/sholat/jadwal/1608/${yyyy}/${mm}/${dd}`);
+                    const data2 = await res2.json();
+                    
+                    if (data2.status && data2.data && data2.data.jadwal) {
+                        const j = data2.data.jadwal;
+                        document.getElementById('subuh').textContent = j.subuh;
+                        document.getElementById('dzuhur').textContent = j.dzuhur;
+                        document.getElementById('ashar').textContent = j.ashar;
+                        document.getElementById('maghrib').textContent = j.maghrib;
+                        document.getElementById('isya').textContent = j.isya;
+                    }
+                } catch (err) {
+                    // Estimasi Standar Banten jika koneksi API terputus
+                    document.getElementById('subuh').textContent = '04:28';
+                    document.getElementById('dzuhur').textContent = '11:48';
+                    document.getElementById('ashar').textContent = '15:00';
+                    document.getElementById('maghrib').textContent = '17:52';
+                    document.getElementById('isya').textContent = '19:01';
                 }
             }
-        } catch (err) {
-            resultBox.style.display = 'block';
-            resultContent.innerHTML = `<span style="color: #f85149;">Gagal mengontak server Worker. Coba beberapa saat lagi.</span>`;
-        } finally {
-            button.disabled = false;
-            button.innerHTML = isTrial 
-                ? `<i class="fa-solid fa-bolt"></i> Ambil Akun Trial (15-20 Menit)`
-                : `<i class="fa-solid fa-paper-plane"></i> Buat Akun Sekarang`;
         }
-    }
-
-    function copyResult(elementId) {
-        const text = document.getElementById(elementId).innerText;
-        navigator.clipboard.writeText(text).then(() => {
-            alert("Detail akun berhasil disalin!");
-        });
-    }
-</script>
-
+        fetchPrayerTimes();
+    </script>
 </body>
 </html>
